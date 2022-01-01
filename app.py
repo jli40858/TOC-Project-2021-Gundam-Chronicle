@@ -11,24 +11,87 @@ from fsm import TocMachine
 from utils import send_text_message
 
 load_dotenv()
+machine = {}
+app = Flask(__name__, static_url_path="")
 
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=["user", "usage", "state0079", "state0083", "state0087",
+            "state0079_main", "state0079_rival",
+            "state0083_main", "state0083_rival",
+            "state0087_main", "state0087_rival",
+            ],
     transitions=[
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "usage",
+            "conditions": "is_going_to_usage",
         },
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "dest": "state0079",
+            "conditions": "is_going_to_state0079",
         },
-        {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": "user",
+            "dest": "state0083",
+            "conditions": "is_going_to_state0083",
+        },
+        {
+            "trigger": "advance",
+            "source": "user",
+            "dest": "state0087",
+            "conditions": "is_going_to_state0087",
+        },
+        {
+            "trigger": "advance",
+            "source": "state0079",
+            "dest": "state0079_main",
+            "conditions": "is_going_to_state0079_main",
+        },
+        {
+            "trigger": "advance",
+            "source": "state0079",
+            "dest": "state0079_rival",
+            "conditions": "is_going_to_state0079_rival",
+        },
+        {
+            "trigger": "advance",
+            "source": "state0083",
+            "dest": "state0083_main",
+            "conditions": "is_going_to_state0083_main",
+        },
+        {
+            "trigger": "advance",
+            "source": "state0083",
+            "dest": "state0083_rival",
+            "conditions": "is_going_to_state0083_rival",
+        },
+        {
+            "trigger": "advance",
+            "source": "state0087",
+            "dest": "state0087_main",
+            "conditions": "is_going_to_state0087_main",
+        },
+        {
+            "trigger": "advance",
+            "source": "state0087",
+            "dest": "state0087_rival",
+            "conditions": "is_going_to_state0087_rival",
+        },
+        {"trigger": "go_back", "source": ["state0079_main", "state0079_rival"], "dest": "state0079"},
+        {"trigger": "go_back", "source": ["state0083_main", "state0083_rival"], "dest": "state0083"},
+        {"trigger": "go_back", "source": ["state0087_main", "state0087_rival"], "dest": "state0087"},
+        {"trigger": "go_back", "source": "usage", "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": ["state0079", "state0083", "state0087"],
+            "dest": "user",
+            "conditions": "is_going_back",
+        },
     ],
     initial="user",
     auto_transitions=False,
