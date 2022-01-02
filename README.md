@@ -1,3 +1,16 @@
+# TOC Project 2021 鋼彈歷年戰役事件人物查詢
+## 功能
+查詢動畫作品「機動戰士鋼彈」系列中，歷年的事件以及主要角色。
+## 使用方式
+輸入「選單」呼出年表選單，選擇欲查詢之年份。
+※可在任意情況下輸入「選單」來開啟選單
+![](https://i.imgur.com/VKZR2j5.jpg)
+點選任一年份，即會顯示該年發生之重要戰役資訊，並跳出選單，供查詢該戰役主要陣營之角色。
+![](https://i.imgur.com/cQk6oix.jpg)
+點選任一陣營，即可查看該陣營主角資訊及駕駛機體。
+![](https://i.imgur.com/MLogCLh.jpg)
+## FSM graph
+![](https://i.imgur.com/LtikrTz.png)
 # TOC Project 2020
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/dc7fa47fcd809b99d087/maintainability)](https://codeclimate.com/github/NCKU-CCS/TOC-Project-2020/maintainability)
